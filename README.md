@@ -60,9 +60,9 @@ logs generated:
 
 /-new Manager("Staff", 18)
 |   /-new Staff("Staff 1")
-|   \-new Staff{undefined}
+|   \-new Staff{Staff 1}
 |   /-new Staff("Staff 2")
-|   \-new Staff{undefined}
+|   \-new Staff{Staff 2}
 \-new Manager
 /-Manager.show()
 |   /-Manager.innerPrint([Staff], 18)

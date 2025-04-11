@@ -96,7 +96,7 @@ const logClass = (opts?: LogClassOpts) => {
                 nestLevel++
                 const result = Reflect.construct(orgin, args, newTarget)
                 nestLevel--
-                logger(`${indent}\\-new ${className}${keyName ? `{${(this as any)[keyName]}}` : ''}`)
+                logger(`${indent}\\-new ${className}${keyName ? `{${result[keyName]}}` : ''}`)
                 return result
             },
         })
