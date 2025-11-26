@@ -114,6 +114,6 @@ const logClass = (opts?: LogClassOpts) => {
 /***
  * @param level 0 <= level <= 5, initial logLevel is 0. if logClass's level <= logLevel, will show logs.
  */
-const setLogLevel = (level = 3): void => {
+const setLogLevel = (level: 0 | 1 | 2 | 3 | 4 | 5): void => {
     logLevel = level > 5 ? 5 : (level < 0 ? 0 : level)
 }

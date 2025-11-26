@@ -1,6 +1,6 @@
 {
   "name": "log-class",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Help you track the complete process of class member function calls with a single log line.",
   "main": "./lib/logClass.js",
   "module": "./lib/logClass.mjs",
