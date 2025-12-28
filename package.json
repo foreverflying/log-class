@@ -1,10 +1,16 @@
 {
   "name": "log-class",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Help you track the complete process of class member function calls with a single log line.",
   "main": "./lib/logClass.js",
   "module": "./lib/logClass.mjs",
   "typings": "./lib/logClass.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/logClass.d.ts",
+      "default": "./lib/logClass.mjs"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com:foreverflying/log-class.git"

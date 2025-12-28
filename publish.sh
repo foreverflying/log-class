@@ -4,7 +4,7 @@ set -ex
 
 uglify() {
     for arg in "$@"; do
-        npx terser ./min/out/$arg -o ./lib/$arg
+        npx terser ./min/out/$arg --compress --mangle --output ./lib/$arg
     done
 }
 
