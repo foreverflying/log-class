@@ -10,8 +10,8 @@ export {
     setLogLevel,
 }
 
-let logLevel = 0
-let nestLevel = 0
+let nestLevel = 0, logLevel = parseInt(process.env.LOG_CLASS_LOG_LEVEL ?? '0') || 0
+logLevel = logLevel > 5 ? 5 : (logLevel < 0 ? 0 : logLevel)
 
 const valueToPrint = (x: any) => x === null ? x : (
     typeof x === 'string' ? `"${x}"` : (
@@ -68,15 +68,15 @@ const replacePrototypeMethod = (prototype: Record<string, AnyFunc>, prop: string
 
 type LogClassOpts = {
     logger?: (...args: any[]) => void
-    level?: number
+    level?: 0 | 1 | 2 | 3 | 4 | 5
     keyName?: string
 }
 
 /***
- * @param opts optional parameters for logging
- * @param opts.logger:  logger function to use, default is console.log
- * @param opts.level:   this class's log level, if level <= logLevel then show logs, default is 3
- * @param opts.keyName: when logging a class's instance, also show this[keyName] as identifier
+ * @param opts          optional parameters for logging
+ * @param opts.logger   logger function to use, default is console.log
+ * @param opts.level    this class's level, 0 <= level <= 5, if level <= logLevel then show logs, default is 3
+ * @param opts.keyName  when logging a class's instance, also show this[keyName] as identifier
  */
 const logClass = (opts?: LogClassOpts) => {
     const logger = opts?.logger ?? console.log
@@ -112,8 +112,8 @@ const logClass = (opts?: LogClassOpts) => {
 }
 
 /***
- * @param level 0 <= level <= 5, initial logLevel is 0. if logClass's level <= logLevel, will show logs.
+ * @param val           if logClass's val <= logLevel, will show logs. initial logLevel is 0
  */
-const setLogLevel = (level: 0 | 1 | 2 | 3 | 4 | 5): void => {
-    logLevel = level > 5 ? 5 : (level < 0 ? 0 : level)
+const setLogLevel = (val: 0 | 1 | 2 | 3 | 4 | 5): void => {
+    logLevel = val > 5 ? 5 : (val < 0 ? 0 : val)
 }

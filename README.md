@@ -81,20 +81,25 @@ logs generated:
 ```
 
 # Usage
+## Set `logLevel`
+Any class with its `level` <= `logLevel` will show logs.
+The default initial `logLevel` is 0, which means show no logs (except for the classes that claimed their `level` to be 0). Use environment variable `LOG_CLASS_LOG_LEVEL` to override it, integers 0 ~ 5 are acceptable.
+
+## APIs
 ```ts
 /***
- * @param opts optional parameters for logging
- * @param opts.logger:  logger function to use, default is console.log
- * @param opts.level:   this class's log level, if level <= logLevel then show logs, default is 3
- * @param opts.keyName: when logging a class's instance, also show this[keyName] as identifier
+ * @param opts          optional parameters for logging
+ * @param opts.logger   logger function to use, default is console.log
+ * @param opts.level    this class's level, 0 <= level <= 5, if level <= logLevel then show logs, default is 3
+ * @param opts.keyName  when logging a class's instance, also show this[keyName] as identifier
  */
 const logClass = (opts?: LogClassOpts) => {
     // ...
 }
 
 /***
- * @param level 0 <= level <= 5, initial logLevel is 0. if logClass's level <= logLevel, will show logs.
+ * @param val           if logClass's val <= logLevel, will show logs. initial logLevel is 0
  */
-const setLogLevel = (level: 0 | 1 | 2 | 3 | 4 | 5): void => {
+const setLogLevel = (val: 0 | 1 | 2 | 3 | 4 | 5): void => {
     // ...
 }

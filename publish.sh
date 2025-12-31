@@ -2,24 +2,16 @@
 
 set -ex
 
-uglify() {
-    for arg in "$@"; do
-        npx terser ./min/out/$arg --compress --mangle --output ./lib/$arg
-    done
-}
 
-copy_declaration() {
-    for arg in "$@"; do
-        cp ./min/out/$arg ./lib
-    done
-}
-
+rm -rf ./min/* ./lib/*
 npx minify-ts -o ./src ./min/src logClass.ts
 cp tsconfig.json ./min
-mkdir -p lib
-
-npx tsc -p ./min --module es2020 --moduleResolution node
-mv ./min/out/logClass.js ./min/out/logClass.mjs
 npx tsc -p ./min
-copy_declaration logClass.d.ts
-uglify logClass.js logClass.mjs
+mv ./min/out/logClass.js ./min/out/logClass.cjs
+npx tsc -p ./min --module es2020
+mv ./min/out/logClass.js ./min/out/logClass.mjs
+
+mkdir -p lib
+npx terser ./min/out/logClass.cjs --compress --mangle --output ./lib/logClass.cjs
+npx terser ./min/out/logClass.mjs --compress --mangle --output ./lib/logClass.mjs
+mv ./min/out/logClass.d.ts ./lib/logClass.d.ts
