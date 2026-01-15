@@ -1,6 +1,6 @@
 services:
   log-class:
-    image: dev-node:25.2.1
+    image: dev-node:24
     hostname: log-class
     environment:
       - TZ=${TIME_ZONE:-Pacific/Auckland}

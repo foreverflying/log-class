@@ -2,7 +2,6 @@
 
 set -ex
 
-
 rm -rf ./min/* ./lib/*
 npx minify-ts -o ./src ./min/src logClass.ts
 cp tsconfig.json ./min
